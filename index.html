@@ -49,7 +49,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="card"><div class="count"><div><span class="days" id="dl">–</span></div><div><b>days to your first exam</b><br><span class="sub">Exam start date: <input type="date" id="ed"></span></div></div>
  <p class="sub" style="margin-top:10px">Check the official date sheet on cbse.gov.in and set the date above.</p></div>
  <div class="card"><h2>Overall progress</h2><div class="bar"><i id="op"></i></div><p class="sub" id="ot"></p></div>
- <div class="card"><h2>Today’s plan</h2><p class="sub" id="pt"></p><div id="plan"></div></div>
+ <div class="card"><h2>Today’s plan</h2><p class="sub" id="pt"></p><div id="plan"></div><button class="ghost" id="unskip" style="margin-top:10px">Reset today’s plan</button></div>
  <div class="tip" id="quote"></div>
 </section>
 
@@ -110,9 +110,9 @@ function render(){
  $("op").style.width=pc+"%";$("ot").textContent=pc+"% complete · "+all.filter(function(c){return st(c.id)==4}).length+" of "+all.length+" chapters confident";
  // plan
  var left=tot-done,dl=Math.max(1,daysLeft()),n=Math.min(8,Math.max(1,Math.ceil(left/dl)));
- var cand=all.filter(function(c){return st(c.id)<4}).sort(function(a,b){return st(a.id)-st(b.id)||(D.star[b.id]?1:0)-(D.star[a.id]?1:0)}).slice(0,n);
+ var cand=all.filter(function(c){return st(c.id)<4&&((D.skip||{})[today()]||[]).indexOf(c.id)<0}).sort(function(a,b){return st(a.id)-st(b.id)||(D.star[b.id]?1:0)-(D.star[a.id]?1:0)}).slice(0,n);
  $("pt").textContent=cand.length?"To finish on time, move "+n+" chapter"+(n>1?"s":"")+" up a level today. Starred chapters come first.":"";
- $("plan").innerHTML=cand.length?cand.map(rowHtml).join(""):"<p>🎉 Every chapter is marked confident. Keep revising with mock papers.</p>";
+ $("plan").innerHTML=cand.length?cand.map(function(c){return rowHtml(c).replace(/<\/div>$/,'<button class="ghost" data-skip="'+esc(c.id)+'">Skip</button></div>')}).join(""):"<p>🎉 Every chapter is marked confident. Keep revising with mock papers.</p>";
  $("quote").textContent=QUO[new Date().getDate()%QUO.length];
  // syllabus
  var h="";for(var sub in SYL[cls]){var cs=all.filter(function(c){return c.sub===sub}),sp=Math.round(cs.reduce(function(a,c){return a+st(c.id)},0)/(cs.length*4)*100);
@@ -133,6 +133,7 @@ document.addEventListener("click",function(e){var t=e.target,a;
  if(a=t.dataset.c){cls=a;load();save();render();return}
  if(a=t.dataset.ch){D.ch[a]=(st(a)+1)%5;save();render();return}
  if(a=t.dataset.rx){var p=a.split("|"),L=D.extra[p[0]]||[],nm=L[+p[1]];if(pend!==a){pend=a;render();setTimeout(function(){if(pend===a){pend=null;render()}},3000);return}pend=null;if(nm!==undefined){L.splice(+p[1],1);delete D.ch[p[0]+"::"+nm];delete D.star[p[0]+"::"+nm];save()}render();return}
+ if(a=t.dataset.skip){D.skip=D.skip||{};(D.skip[today()]=D.skip[today()]||[]).push(a);save();render();return}
  if(a=t.dataset.star){D.star[a]=!D.star[a];save();render();return}
  if(a=t.dataset.addb){var i=document.querySelector('[data-add="'+a+'"]'),v=i.value.trim();if(v){(D.extra[a]=D.extra[a]||[]).push(v);save();render()}return}
  if(t.dataset.fix!==undefined){var m=D.mist[t.dataset.fix];m.fixed=!m.fixed;save();render();return}
@@ -145,6 +146,7 @@ $("ed").onchange=function(){if(this.value){D.date=this.value;save();render()}};
 $("sleep").onchange=function(){D.sleep[today()]=this.value;save()};
 $("madd").onclick=function(){var q=$("mq").value.trim();if(!q)return;D.mist.unshift({q:q,r:$("mr").value,d:today(),fixed:false});$("mq").value="";save();render()};
 $("rst").onclick=function(){if(this.dataset.s!=="1"){this.dataset.s="1";this.textContent="Tap again to delete everything";var b=this;setTimeout(function(){b.dataset.s="";b.textContent="Reset all my data"},3000);return}this.dataset.s="";this.textContent="Reset all my data";D=null;try{localStorage.removeItem(KEY+cls)}catch(e){}load();render()};
+$("unskip").onclick=function(){if(D.skip)delete D.skip[today()];save();render()};
 // timer
 var secs=1500,run=null,mode=25;
 function tdraw(){$("tm").textContent=String(Math.floor(secs/60)).padStart(2,"0")+":"+String(secs%60).padStart(2,"0");$("tmode").textContent=mode==5?"Break time":"Focus session"}
