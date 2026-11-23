@@ -41,6 +41,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .flex{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .tag{font-size:.75rem;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--mute)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;align-items:flex-end;justify-content:center}.ov.on{display:flex}.ov .card{max-width:640px;width:100%;margin:0;max-height:80vh;overflow:auto;border-radius:16px 16px 0 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}.mini{padding:2px 8px;font-size:.78rem;margin-top:4px}
 </style></head><body><div class="wrap">
 <div class="top"><div><h1>Board Ready</h1><p class="sub">Plan, revise, and stay calm. CBSE boards 2027.</p></div>
 <div class="seg" id="cls"><button data-c="10">Class 10</button><button data-c="12">Class 12 Science</button></div></div>
@@ -75,6 +76,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="card"><h2>Official resources</h2><p class="sub">Sample papers, marking schemes, and the latest syllabus are on <b>cbseacademic.nic.in</b>. Always check there, since chapters can change by session.</p>
  <button class="ghost" id="rst">Reset all my data</button></div></section>
 </div>
+<div class="ov" id="sheet"><div class="card"><div class="top"><h2 id="sh"></h2><button class="ghost" id="sx">Close</button></div><div id="sb"></div></div></div>
 <nav class="tabs" id="tabs"><button data-t="today" class="on">Today</button><button data-t="syl">Syllabus</button><button data-t="focus">Focus</button><button data-t="mis">Mistakes</button><button data-t="me">Me</button></nav>
 
 <script>
@@ -116,7 +118,7 @@ function render(){
  $("quote").textContent=QUO[new Date().getDate()%QUO.length];
  // syllabus
  var h="";for(var sub in SYL[cls]){var cs=all.filter(function(c){return c.sub===sub}),sp=Math.round(cs.reduce(function(a,c){return a+st(c.id)},0)/(cs.length*4)*100);
-  h+='<div class="card"><h2>'+esc(sub)+' <span class="tag">'+sp+'%</span></h2><div class="bar" style="margin-bottom:6px"><i style="width:'+sp+'%"></i></div>'+cs.map(rowHtml).join("")+
+  h+='<div class="card"><h2>'+esc(sub)+' <span class="tag">'+sp+'%</span></h2><div class="bar" style="margin-bottom:6px"><i style="width:'+sp+'%"></i></div>'+(sub==='English'?dictHtml():'')+cs.map(rowHtml).join("")+
   '<div class="flex" style="margin-top:10px"><input data-add="'+esc(sub)+'" placeholder="Add a chapter or topic" style="flex:1;min-width:160px"><button class="ghost" data-addb="'+esc(sub)+'">Add</button></div></div>'}
  $("syl").innerHTML=h;
  // mistakes
@@ -128,12 +130,16 @@ function render(){
  $("chk").innerHTML=CHK.map(function(c,i){return '<label class="row" style="cursor:pointer"><span class="nm">'+c+'</span><input type="checkbox" data-chk="'+i+'"'+(D.chk[i]?" checked":"")+'></label>'}).join("");
  $("sd").textContent=D.sess[today()]||0;
 }
-function rowHtml(c){var s=st(c.id);return '<div class="row"><button class="star'+(D.star[c.id]?" on":"")+'" data-star="'+esc(c.id)+'" aria-label="Mark important">'+(D.star[c.id]?"★":"☆")+'</button><div class="nm">'+esc(c.name)+'<small>'+esc(c.sub)+'</small></div><button class="chip s'+s+'" data-ch="'+esc(c.id)+'">'+ST[s]+'</button>'+(c.x>=0?'<button class="ghost" data-rx="'+esc(c.sub)+'|'+c.x+'" aria-label="Remove added chapter" title="Remove">'+(pend===c.sub+'|'+c.x?'Remove?':'✕')+'</button>':'')+'</div>'}
+function rowHtml(c){var s=st(c.id);return '<div class="row"><button class="star'+(D.star[c.id]?" on":"")+'" data-star="'+esc(c.id)+'" aria-label="Mark important">'+(D.star[c.id]?"★":"☆")+'</button><div class="nm">'+esc(c.name)+'<small>'+esc(c.sub)+'</small>'+(c.sub==='English'?'':'<button class="ghost mini" data-wiki="'+esc(c.id)+'">📖 Overview</button>')+'</div><button class="chip s'+s+'" data-ch="'+esc(c.id)+'">'+ST[s]+'</button>'+(c.x>=0?'<button class="ghost" data-rx="'+esc(c.sub)+'|'+c.x+'" aria-label="Remove added chapter" title="Remove">'+(pend===c.sub+'|'+c.x?'Remove?':'✕')+'</button>':'')+'</div>'}
 document.addEventListener("click",function(e){var t=e.target,a;
  if(a=t.dataset.c){cls=a;load();save();render();return}
  if(a=t.dataset.ch){D.ch[a]=(st(a)+1)%5;save();render();return}
  if(a=t.dataset.rx){var p=a.split("|"),L=D.extra[p[0]]||[],nm=L[+p[1]];if(pend!==a){pend=a;render();setTimeout(function(){if(pend===a){pend=null;render()}},3000);return}pend=null;if(nm!==undefined){L.splice(+p[1],1);delete D.ch[p[0]+"::"+nm];delete D.star[p[0]+"::"+nm];save()}render();return}
  if(a=t.dataset.skip){D.skip=D.skip||{};(D.skip[today()]=D.skip[today()]||[]).push(a);save();render();return}
+ if(a=t.dataset.wiki){wiki(a);return}
+ if(a=t.dataset.say){try{new Audio(a).play()}catch(e){}return}
+ if(t.id==="dgo"){lookup();return}
+ if(t.id==="sx"||t.id==="sheet"){$("sheet").classList.remove("on");return}
  if(a=t.dataset.star){D.star[a]=!D.star[a];save();render();return}
  if(a=t.dataset.addb){var i=document.querySelector('[data-add="'+a+'"]'),v=i.value.trim();if(v){(D.extra[a]=D.extra[a]||[]).push(v);save();render()}return}
  if(t.dataset.fix!==undefined){var m=D.mist[t.dataset.fix];m.fixed=!m.fixed;save();render();return}
@@ -147,6 +153,19 @@ $("sleep").onchange=function(){D.sleep[today()]=this.value;save()};
 $("madd").onclick=function(){var q=$("mq").value.trim();if(!q)return;D.mist.unshift({q:q,r:$("mr").value,d:today(),fixed:false});$("mq").value="";save();render()};
 $("rst").onclick=function(){if(this.dataset.s!=="1"){this.dataset.s="1";this.textContent="Tap again to delete everything";var b=this;setTimeout(function(){b.dataset.s="";b.textContent="Reset all my data"},3000);return}this.dataset.s="";this.textContent="Reset all my data";D=null;try{localStorage.removeItem(KEY+cls)}catch(e){}load();render()};
 $("unskip").onclick=function(){if(D.skip)delete D.skip[today()];save();render()};
+var dictOut='';
+function dictHtml(){return '<div style="background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0 12px"><b>Word lookup</b><div class="flex" style="margin-top:6px"><input id="dw" placeholder="Type an English word" style="flex:1;min-width:140px" autocapitalize="none"><button class="pri" id="dgo">Look up</button></div><div id="dres">'+dictOut+'</div></div>'}
+function lookup(){var w=($("dw").value||'').trim().toLowerCase();if(!w)return;var o=$("dres");o.innerHTML='<p class="sub">Looking up…</p>';
+ fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+encodeURIComponent(w)).then(function(r){if(!r.ok)throw 404;return r.json()}).then(function(d){var e=d[0],ph=e.phonetic||((e.phonetics||[]).filter(function(p){return p.text})[0]||{}).text||'',au=((e.phonetics||[]).filter(function(p){return p.audio})[0]||{}).audio||'';au=au.replace(/^\/\//,'https://');
+ var h='<p style="margin:8px 0 0"><b style="font-size:1.2rem">'+esc(e.word)+'</b> <span class="sub">'+esc(ph)+'</span> '+(au?'<button class="ghost mini" data-say="'+esc(au)+'" aria-label="Play pronunciation">🔊</button>':'')+'</p>';
+ (e.meanings||[]).slice(0,3).forEach(function(m){var df=m.definitions[0];h+='<p style="margin:6px 0"><span class="tag">'+esc(m.partOfSpeech)+'</span> '+esc(df.definition)+(df.example?'<br><i class="sub">“'+esc(df.example)+'”</i>':'')+((m.synonyms||[]).length?'<br><small class="sub">Similar: '+esc(m.synonyms.slice(0,5).join(', '))+'</small>':'')+'</p>'});
+ dictOut=h;o.innerHTML=h}).catch(function(x){var m=x===404?'No result for “'+esc(w)+'”. Check the spelling.':'Couldn’t connect. Check your internet and try again.';dictOut='<p class="sub">'+m+'</p>';o.innerHTML=dictOut})}
+function wiki(id){var c=chapters().filter(function(x){return x.id===id})[0];if(!c)return;var nm=c.name,q=c.name+' '+c.sub;if(c.sub==='Social Science'){var m=c.name.split(': ');nm=m[1]||c.name;q=nm+' '+(m[1]?m[0]:'')}
+ $("sh").textContent=nm;$("sb").innerHTML='<p class="sub">Loading…</p>';$("sheet").classList.add("on");
+ fetch('https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch='+encodeURIComponent(q)+'&gsrlimit=1&prop=extracts|info&exintro=1&explaintext=1&exsentences=5&inprop=url&format=json&origin=*').then(function(r){return r.json()}).then(function(d){var ps=d.query&&d.query.pages,p=ps&&ps[Object.keys(ps)[0]];
+ if(!p||!p.extract){$("sb").innerHTML='<p>No overview found for this topic. Check your NCERT book.</p>';return}
+ $("sb").innerHTML='<p><b>'+esc(p.title)+'</b></p><p>'+esc(p.extract)+'</p><p class="sub">Source: <a href="'+esc(p.fullurl)+'" target="_blank" rel="noopener">Wikipedia</a>. Use this as a quick overview only. Your NCERT book is the main source for exams.</p>'}).catch(function(){$("sb").innerHTML='<p>Couldn’t load the overview. Check your internet and try again.</p>'})}
+document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.id==="dw")lookup();if(e.key==="Escape")$("sheet").classList.remove("on")});
 // timer
 var secs=1500,run=null,mode=25;
 function tdraw(){$("tm").textContent=String(Math.floor(secs/60)).padStart(2,"0")+":"+String(secs%60).padStart(2,"0");$("tmode").textContent=mode==5?"Break time":"Focus session"}
