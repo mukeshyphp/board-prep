@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Board Ready – CBSE Class 10 & 12 Science</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6fb;--card:#fff;--ink:#1c2b4a;--mute:#5d6b86;--line:#d6deec;--blue:#2b50d8;--hl:#ffe45c;--ok:#1a8f5b;--bad:#c93c3c;--grid:#e3e9f5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10172a;--card:#1a2340;--ink:#e8edf9;--mute:#9aa8c7;--line:#2b3759;--blue:#7d9bff;--hl:#e8c93a;--ok:#4cc88c;--bad:#ff7b7b;--grid:#17203a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10172a;--card:#1a2340;--ink:#e8edf9;--mute:#9aa8c7;--line:#2b3759;--blue:#7d9bff;--hl:#e8c93a;--ok:#4cc88c;--bad:#ff7b7b;--grid:#17203a;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Lexend,system-ui,sans-serif;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 90px}
+h1{font-size:1.5rem;margin:0}h2{font-size:1.15rem;margin:0 0 10px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.sub{color:var(--mute);font-size:.9rem;margin:2px 0 0}
+.seg{display:flex;border:2px solid var(--ink);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 14px;font:inherit;font-weight:500;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.count{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.days{font-size:3rem;font-weight:700;line-height:1;background:linear-gradient(transparent 60%,var(--hl) 60%);padding:0 6px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:100%}
+textarea{width:100%;resize:vertical}
+button.pri{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:500;cursor:pointer}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);transition:width .3s}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .nm{flex:1;min-width:0}.row small{color:var(--mute);display:block}
+.chip{border:0;border-radius:20px;padding:6px 12px;font:inherit;font-size:.82rem;font-weight:500;cursor:pointer;min-width:104px;color:#1c2b4a}
+.s0{background:#e4e8f1}.s1{background:#cfe0ff}.s2{background:#ffe9a3}.s3{background:#ffd1a8}.s4{background:#a8ebc7}
+.star{background:none;border:0;font-size:1.2rem;cursor:pointer;color:var(--mute)}.star.on{color:#e0a800}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+.tabs button{flex:1;max-width:150px;background:none;border:0;color:var(--mute);font:inherit;font-size:.78rem;padding:10px 4px;cursor:pointer}
+.tabs button.on{color:var(--blue);font-weight:700;box-shadow:inset 0 3px 0 var(--blue)}
+.timer{font-size:4rem;font-weight:700;text-align:center;letter-spacing:2px}
+.ctr{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.tip{background:var(--hl);color:#1c2b4a;border-radius:10px;padding:10px 12px;font-size:.92rem}
+.sec{display:none}.sec.on{display:block}
+.flex{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tag{font-size:.75rem;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--mute)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><div class="wrap">
+<div class="top"><div><h1>Board Ready</h1><p class="sub">Plan, revise, and stay calm. CBSE boards 2027.</p></div>
+<div class="seg" id="cls"><button data-c="10">Class 10</button><button data-c="12">Class 12 Science</button></div></div>
+
+<section class="sec on" id="t-today">
+ <div class="card"><div class="count"><div><span class="days" id="dl">–</span></div><div><b>days to your first exam</b><br><span class="sub">Exam start date: <input type="date" id="ed"></span></div></div>
+ <p class="sub" style="margin-top:10px">Check the official date sheet on cbse.gov.in and set the date above.</p></div>
+ <div class="card"><h2>Overall progress</h2><div class="bar"><i id="op"></i></div><p class="sub" id="ot"></p></div>
+ <div class="card"><h2>Today’s plan</h2><p class="sub" id="pt"></p><div id="plan"></div></div>
+ <div class="tip" id="quote"></div>
+</section>
+
+<section class="sec" id="t-syl"><div id="syl"></div></section>
+
+<section class="sec" id="t-focus"><div class="card"><h2>Focus timer</h2>
+ <div class="timer" id="tm">25:00</div><p class="sub" style="text-align:center" id="tmode">Focus session</p>
+ <div class="ctr"><button class="pri" id="tgo">Start</button><button class="ghost" id="trs">Reset</button></div>
+ <div class="ctr"><button class="ghost" data-m="25">25 min focus</button><button class="ghost" data-m="50">50 min focus</button><button class="ghost" data-m="5">5 min break</button></div>
+ <p class="sub" style="text-align:center">Sessions done today: <b id="sd">0</b></p></div>
+ <div class="card"><h2>Quick reset (1 minute)</h2><p>Breathe in for 4 counts, hold for 4, breathe out for 6. Repeat 5 times. Then drink some water and stretch your neck and shoulders.</p></div></section>
+
+<section class="sec" id="t-mis"><div class="card"><h2>Mistake log</h2>
+ <div class="flex"><input id="mq" placeholder="Question or topic you got wrong" style="flex:1;min-width:180px"><select id="mr"><option>Silly mistake</option><option>Concept gap</option><option>Time pressure</option><option>Forgot formula</option></select><button class="pri" id="madd">Add</button></div></div>
+ <div class="card" id="mlist"></div></section>
+
+<section class="sec" id="t-me">
+ <div class="card"><h2>Today’s check-in</h2>
+ <p class="sub">How are you feeling?</p><div class="flex" id="mood"></div>
+ <p class="sub">Hours slept last night: <input type="number" id="sleep" min="0" max="14" step="0.5" style="width:80px"></p>
+ <p class="sub" id="moodmsg"></p></div>
+ <div class="card"><h2>Exam-day checklist</h2><div id="chk"></div></div>
+ <div class="card"><h2>Official resources</h2><p class="sub">Sample papers, marking schemes, and the latest syllabus are on <b>cbseacademic.nic.in</b>. Always check there, since chapters can change by session.</p>
+ <button class="ghost" id="rst">Reset all my data</button></div></section>
+</div>
+<nav class="tabs" id="tabs"><button data-t="today" class="on">Today</button><button data-t="syl">Syllabus</button><button data-t="focus">Focus</button><button data-t="mis">Mistakes</button><button data-t="me">Me</button></nav>
+
+<script>
+var SYL={
+"10":{"Maths":"Real Numbers|Polynomials|Pair of Linear Equations|Quadratic Equations|Arithmetic Progressions|Triangles|Coordinate Geometry|Intro to Trigonometry|Applications of Trigonometry|Circles|Areas Related to Circles|Surface Areas and Volumes|Statistics|Probability",
+"Science":"Chemical Reactions|Acids, Bases and Salts|Metals and Non-metals|Carbon Compounds|Life Processes|Control and Coordination|How Organisms Reproduce|Heredity|Light|Human Eye|Electricity|Magnetic Effects of Current|Our Environment",
+"Social Science":"History: Nationalism in Europe|History: Nationalism in India|History: Making of a Global World|History: Age of Industrialisation|History: Print Culture|Geography: Resources and Development|Geography: Forest and Wildlife|Geography: Water Resources|Geography: Agriculture|Geography: Minerals and Energy|Geography: Manufacturing|Geography: Lifelines of Economy|Civics: Power Sharing|Civics: Federalism|Civics: Gender, Religion, Caste|Civics: Political Parties|Civics: Outcomes of Democracy|Economics: Development|Economics: Sectors of Economy|Economics: Money and Credit|Economics: Globalisation|Economics: Consumer Rights",
+"English":"Reading Skills|Writing Skills|Grammar|First Flight: Prose|First Flight: Poems|Footprints Without Feet"},
+"12":{"Physics":"Electric Charges and Fields|Electrostatic Potential and Capacitance|Current Electricity|Moving Charges and Magnetism|Magnetism and Matter|Electromagnetic Induction|Alternating Current|Electromagnetic Waves|Ray Optics|Wave Optics|Dual Nature of Matter|Atoms|Nuclei|Semiconductor Devices",
+"Chemistry":"Solutions|Electrochemistry|Chemical Kinetics|d- and f-Block Elements|Coordination Compounds|Haloalkanes and Haloarenes|Alcohols, Phenols and Ethers|Aldehydes, Ketones, Carboxylic Acids|Amines|Biomolecules",
+"Maths":"Relations and Functions|Inverse Trigonometry|Matrices|Determinants|Continuity and Differentiability|Applications of Derivatives|Integrals|Applications of Integrals|Differential Equations|Vectors|Three Dimensional Geometry|Linear Programming|Probability",
+"Biology":"Sexual Reproduction in Plants|Human Reproduction|Reproductive Health|Principles of Inheritance|Molecular Basis of Inheritance|Evolution|Human Health and Disease|Microbes in Human Welfare|Biotechnology: Principles|Biotechnology: Applications|Organisms and Populations|Ecosystem|Biodiversity",
+"English":"Flamingo: Prose|Flamingo: Poetry|Vistas|Writing Skills|Grammar"}};
+var ST=["Not started","Studied","Revised 1×","Revised 2×","Confident"];
+var QUO=["Small steps every day beat one big push.","You don’t need to be perfect. You need to be prepared.","Revision is where marks are made. You’re doing it.","Rest is part of the plan. Sleep well tonight.","One chapter at a time. That’s all.","Stuck on a topic? Move on and come back. Progress matters more than perfection."];
+var MOODS=[["😟","Stressed"],["😐","Okay"],["🙂","Good"],["😄","Great"]];
+var CHK=["Admit card and school ID","Pens (blue/black), pencils, eraser, sharpener","Geometry box and calculator if allowed","Transparent water bottle","Route and travel time checked","Reach the centre 30 minutes early","Light meal and good sleep the night before"];
+var D=null,cls="12",KEY="boardready:",pend=null;
+function load(){var r=null;try{r=localStorage.getItem(KEY+"cls");}catch(e){}if(r)cls=r;
+ var d=null;try{d=JSON.parse(localStorage.getItem(KEY+cls));}catch(e){}
+ D=d||{ch:{},star:{},extra:{},mist:[],mood:{},sleep:{},chk:{},sess:{},date:"2027-02-17"};}
+function save(){try{localStorage.setItem(KEY+cls,JSON.stringify(D));localStorage.setItem(KEY+"cls",cls);}catch(e){}}
+function today(){return new Date().toISOString().slice(0,10)}
+function chapters(){var out=[],s=SYL[cls];for(var sub in s){var l=s[sub].split("|").concat(D.extra[sub]||[]);var bl=s[sub].split("|").length;l.forEach(function(n,i){out.push({sub:sub,name:n,id:sub+"::"+n,x:i>=bl?i-bl:-1})})}return out}
+function st(id){return D.ch[id]||0}
+function daysLeft(){var t=new Date(today()),e=new Date(D.date);return Math.max(0,Math.round((e-t)/864e5))}
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function render(){
+ document.querySelectorAll("#cls button").forEach(function(b){b.classList.toggle("on",b.dataset.c===cls)});
+ $("ed").value=D.date;$("dl").textContent=daysLeft();
+ var all=chapters(),tot=all.length*4,done=all.reduce(function(a,c){return a+st(c.id)},0),pc=Math.round(done/tot*100);
+ $("op").style.width=pc+"%";$("ot").textContent=pc+"% complete · "+all.filter(function(c){return st(c.id)==4}).length+" of "+all.length+" chapters confident";
+ // plan
+ var left=tot-done,dl=Math.max(1,daysLeft()),n=Math.min(8,Math.max(1,Math.ceil(left/dl)));
+ var cand=all.filter(function(c){return st(c.id)<4}).sort(function(a,b){return st(a.id)-st(b.id)||(D.star[b.id]?1:0)-(D.star[a.id]?1:0)}).slice(0,n);
+ $("pt").textContent=cand.length?"To finish on time, move "+n+" chapter"+(n>1?"s":"")+" up a level today. Starred chapters come first.":"";
+ $("plan").innerHTML=cand.length?cand.map(rowHtml).join(""):"<p>🎉 Every chapter is marked confident. Keep revising with mock papers.</p>";
+ $("quote").textContent=QUO[new Date().getDate()%QUO.length];
+ // syllabus
+ var h="";for(var sub in SYL[cls]){var cs=all.filter(function(c){return c.sub===sub}),sp=Math.round(cs.reduce(function(a,c){return a+st(c.id)},0)/(cs.length*4)*100);
+  h+='<div class="card"><h2>'+esc(sub)+' <span class="tag">'+sp+'%</span></h2><div class="bar" style="margin-bottom:6px"><i style="width:'+sp+'%"></i></div>'+cs.map(rowHtml).join("")+
+  '<div class="flex" style="margin-top:10px"><input data-add="'+esc(sub)+'" placeholder="Add a chapter or topic" style="flex:1;min-width:160px"><button class="ghost" data-addb="'+esc(sub)+'">Add</button></div></div>'}
+ $("syl").innerHTML=h;
+ // mistakes
+ $("mlist").innerHTML=D.mist.length?D.mist.map(function(m,i){return '<div class="row"><div class="nm">'+esc(m.q)+'<small>'+esc(m.r)+' · '+m.d+(m.fixed?' · fixed':'')+'</small></div><button class="ghost" data-fix="'+i+'">'+(m.fixed?"Undo":"Mark fixed")+'</button><button class="ghost" data-del="'+i+'" aria-label="Delete">✕</button></div>'}).join(""):'<p class="sub">No mistakes logged yet. Add one after each practice paper, and retry it a week later.</p>';
+ // me
+ $("mood").innerHTML=MOODS.map(function(m,i){return '<button class="ghost'+(D.mood[today()]===i?' on':'')+'" style="'+(D.mood[today()]===i?'border-color:var(--blue);border-width:2px':'')+'" data-mood="'+i+'">'+m[0]+' '+m[1]+'</button>'}).join("");
+ $("sleep").value=D.sleep[today()]||"";
+ var md=D.mood[today()];$("moodmsg").textContent=md===0?"Feeling stressed is normal before boards. Take the 1-minute breathing reset, and talk to a parent, teacher, or friend. You’re not alone.":md===undefined?"":"Good to know. Keep your routine steady.";
+ $("chk").innerHTML=CHK.map(function(c,i){return '<label class="row" style="cursor:pointer"><span class="nm">'+c+'</span><input type="checkbox" data-chk="'+i+'"'+(D.chk[i]?" checked":"")+'></label>'}).join("");
+ $("sd").textContent=D.sess[today()]||0;
+}
+function rowHtml(c){var s=st(c.id);return '<div class="row"><button class="star'+(D.star[c.id]?" on":"")+'" data-star="'+esc(c.id)+'" aria-label="Mark important">'+(D.star[c.id]?"★":"☆")+'</button><div class="nm">'+esc(c.name)+'<small>'+esc(c.sub)+'</small></div><button class="chip s'+s+'" data-ch="'+esc(c.id)+'">'+ST[s]+'</button>'+(c.x>=0?'<button class="ghost" data-rx="'+esc(c.sub)+'|'+c.x+'" aria-label="Remove added chapter" title="Remove">'+(pend===c.sub+'|'+c.x?'Remove?':'✕')+'</button>':'')+'</div>'}
+document.addEventListener("click",function(e){var t=e.target,a;
+ if(a=t.dataset.c){cls=a;load();save();render();return}
+ if(a=t.dataset.ch){D.ch[a]=(st(a)+1)%5;save();render();return}
+ if(a=t.dataset.rx){var p=a.split("|"),L=D.extra[p[0]]||[],nm=L[+p[1]];if(pend!==a){pend=a;render();setTimeout(function(){if(pend===a){pend=null;render()}},3000);return}pend=null;if(nm!==undefined){L.splice(+p[1],1);delete D.ch[p[0]+"::"+nm];delete D.star[p[0]+"::"+nm];save()}render();return}
+ if(a=t.dataset.star){D.star[a]=!D.star[a];save();render();return}
+ if(a=t.dataset.addb){var i=document.querySelector('[data-add="'+a+'"]'),v=i.value.trim();if(v){(D.extra[a]=D.extra[a]||[]).push(v);save();render()}return}
+ if(t.dataset.fix!==undefined){var m=D.mist[t.dataset.fix];m.fixed=!m.fixed;save();render();return}
+ if(t.dataset.del!==undefined){D.mist.splice(t.dataset.del,1);save();render();return}
+ if(t.dataset.mood!==undefined){D.mood[today()]=+t.dataset.mood;save();render();return}
+ if(t.dataset.t){document.querySelectorAll(".sec").forEach(function(s){s.classList.remove("on")});$("t-"+t.dataset.t).classList.add("on");document.querySelectorAll("#tabs button").forEach(function(b){b.classList.toggle("on",b===t)});window.scrollTo(0,0)}
+});
+document.addEventListener("change",function(e){var t=e.target;if(t.dataset.chk!==undefined){D.chk[t.dataset.chk]=t.checked;save()}});
+$("ed").onchange=function(){if(this.value){D.date=this.value;save();render()}};
+$("sleep").onchange=function(){D.sleep[today()]=this.value;save()};
+$("madd").onclick=function(){var q=$("mq").value.trim();if(!q)return;D.mist.unshift({q:q,r:$("mr").value,d:today(),fixed:false});$("mq").value="";save();render()};
+$("rst").onclick=function(){if(this.dataset.s!=="1"){this.dataset.s="1";this.textContent="Tap again to delete everything";var b=this;setTimeout(function(){b.dataset.s="";b.textContent="Reset all my data"},3000);return}this.dataset.s="";this.textContent="Reset all my data";D=null;try{localStorage.removeItem(KEY+cls)}catch(e){}load();render()};
+// timer
+var secs=1500,run=null,mode=25;
+function tdraw(){$("tm").textContent=String(Math.floor(secs/60)).padStart(2,"0")+":"+String(secs%60).padStart(2,"0");$("tmode").textContent=mode==5?"Break time":"Focus session"}
+document.querySelectorAll("[data-m]").forEach(function(b){b.onclick=function(){mode=+b.dataset.m;secs=mode*60;stop();tdraw()}});
+function stop(){clearInterval(run);run=null;$("tgo").textContent="Start"}
+$("tgo").onclick=function(){if(run){stop();return}$("tgo").textContent="Pause";run=setInterval(function(){secs--;tdraw();if(secs<=0){stop();if(mode!=5){D.sess[today()]=(D.sess[today()]||0)+1;save();$("sd").textContent=D.sess[today()]}secs=mode*60;tdraw();$("tmode").textContent=mode==5?"Break over. Ready for the next session?":"Session done! Take a 5-minute break."}},1000)};
+$("trs").onclick=function(){stop();secs=mode*60;tdraw()};
+load();render();tdraw();
+</script></body></html>
