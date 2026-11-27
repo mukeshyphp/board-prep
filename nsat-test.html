@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NSAT Class 10 Mock Test – Board Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6fb;--card:#fff;--ink:#1c2b4a;--mute:#5d6b86;--line:#d6deec;--blue:#2b50d8;--hl:#ffe45c;--ok:#1a8f5b;--bad:#c93c3c;--grid:#e3e9f5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10172a;--card:#1a2340;--ink:#e8edf9;--mute:#9aa8c7;--line:#2b3759;--blue:#7d9bff;--hl:#e8c93a;--ok:#4cc88c;--bad:#ff7b7b;--grid:#17203a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10172a;--card:#1a2340;--ink:#e8edf9;--mute:#9aa8c7;--line:#2b3759;--blue:#7d9bff;--hl:#e8c93a;--ok:#4cc88c;--bad:#ff7b7b;--grid:#17203a;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Lexend,system-ui,sans-serif;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;margin:0}h2{font-size:1.1rem;margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.sub{color:var(--mute);font-size:.9rem}
+a.back{color:var(--blue);text-decoration:none;font-size:.9rem}
+button{font:inherit;cursor:pointer}
+.pri{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:500}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 12px}
+button:disabled{opacity:.4;cursor:default}
+button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.bar2{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-bottom:10px}
+#tm{font-size:1.3rem;font-variant-numeric:tabular-nums}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.chips button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:5px 12px;font-size:.85rem}
+.chips button.on{background:var(--ink);color:var(--bg)}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;color:var(--ink)}
+.opt.sel{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 14%,var(--card))}
+.opt b{display:inline-block;width:26px}
+.q{font-size:1.05rem;font-weight:500}
+.nav{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.nav button{aspect-ratio:1;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font-size:.8rem;padding:0}
+.nav .a{background:#a8ebc7;color:#1c2b4a}.nav .m{background:var(--hl);color:#1c2b4a}.nav .c{outline:3px solid var(--blue)}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;margin-top:10px}
+.big{font-size:3rem;font-weight:700;line-height:1;background:linear-gradient(transparent 60%,var(--hl) 60%);padding:0 6px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok)}
+details{border-top:1px solid var(--line);padding:8px 0}summary{cursor:pointer}
+.ok{color:var(--ok)}.no{color:var(--bad)}
+.tag{font-size:.75rem;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--mute)}
+</style></head><body><div class="wrap">
+<a class="back" href="./">← Back to Board Ready</a>
+<div id="app"></div></div>
+<script>
+var Q=[
+["Physics","An object is placed 30 cm in front of a concave mirror of focal length 15 cm. The image formed is:",["Real, inverted and of the same size, at 30 cm","Virtual, erect and magnified","Real, inverted and diminished, at 15 cm","Real, inverted and magnified, at 60 cm"],0,"u = 2f, so the object is at the centre of curvature. The image forms at the same point, real, inverted and equal in size."],
+["Physics","A lens has a focal length of −50 cm. Its power and nature are:",["+2 D, convex","−2 D, concave","−0.5 D, concave","+0.5 D, convex"],1,"P = 1/f (in metres) = 1/(−0.5) = −2 D. Negative power means a concave (diverging) lens."],
+["Physics","The refractive index of glass is 1.5. If the speed of light in vacuum is 3 × 10⁸ m/s, its speed in glass is:",["2 × 10⁸ m/s","4.5 × 10⁸ m/s","1.5 × 10⁸ m/s","3 × 10⁸ m/s"],0,"v = c/n = (3 × 10⁸)/1.5 = 2 × 10⁸ m/s."],
+["Physics","A student cannot see the blackboard clearly from the last bench but can read a book easily. The defect and its correction are:",["Myopia, concave lens","Myopia, convex lens","Hypermetropia, convex lens","Presbyopia, concave lens"],0,"Trouble with distant objects is myopia. The image forms in front of the retina, so a concave lens is used."],
+["Physics","The sky appears blue during the day mainly because:",["Air molecules scatter shorter (blue) wavelengths more strongly","Air molecules absorb red light completely","The sea reflects its blue colour into the sky","Blue light travels faster than other colours in air"],0,"Very small particles scatter shorter wavelengths much more, so blue light reaches our eyes from all directions."],
+["Chemistry","In the balanced equation x Fe + y H₂O → Fe₃O₄ + z H₂, the values of x, y and z are:",["3, 4, 4","2, 3, 3","3, 3, 4","4, 3, 4"],0,"Balanced: 3Fe + 4H₂O → Fe₃O₄ + 4H₂. Check Fe: 3 and 3; O: 4 and 4; H: 8 and 8."],
+["Chemistry","Which of the following is a displacement reaction?",["2H₂O → 2H₂ + O₂","Fe + CuSO₄ → FeSO₄ + Cu","NaOH + HCl → NaCl + H₂O","CaO + H₂O → Ca(OH)₂"],1,"Iron is more reactive than copper, so it displaces copper from copper sulphate solution."],
+["Chemistry","Solution A has pH 3 and solution B has pH 6. The hydrogen ion concentration of A is _____ that of B.",["1000 times","3 times","100 times","1/1000 of"],0,"Each pH unit is a factor of 10. A gap of 3 units is 10³ = 1000, and the lower pH has more H⁺ ions."],
+["Chemistry","Plaster of Paris is made by heating gypsum. Its formula is:",["CaSO₄·½H₂O","CaSO₄·2H₂O","CaSO₄","CaCO₃"],0,"Heating gypsum (CaSO₄·2H₂O) at 373 K removes water and gives plaster of Paris, CaSO₄·½H₂O."],
+["Chemistry","On heating, baking soda (NaHCO₃) gives CO₂, water and a solid residue. The residue is:",["Na₂CO₃","NaOH","Na₂O","NaCl"],0,"2NaHCO₃ → Na₂CO₃ + H₂O + CO₂. The CO₂ makes cakes rise."],
+["Biology","Which blood vessel carries oxygenated blood from the lungs to the heart?",["Pulmonary artery","Pulmonary vein","Vena cava","Aorta"],1,"The pulmonary vein is the exception among veins: it brings oxygen-rich blood to the left atrium."],
+["Biology","During vigorous exercise, when oxygen supply to muscles is low, glucose is broken down to form:",["Ethanol and CO₂","Lactic acid","CO₂ and water","Starch"],1,"Anaerobic respiration in muscle cells gives lactic acid, which can cause cramps."],
+["Biology","Which part of the brain controls posture and balance of the body?",["Cerebrum","Medulla","Cerebellum","Hypothalamus"],2,"The cerebellum in the hindbrain coordinates posture, balance and precision of movement."],
+["Biology","The plant hormone that makes a stem bend towards light is:",["Gibberellin","Cytokinin","Auxin","Abscisic acid"],2,"Auxin collects on the shaded side and makes those cells longer, so the stem bends towards light."],
+["Biology","The correct sequence of events in a reflex arc is:",["Receptor → Motor neuron → Spinal cord → Sensory neuron → Effector","Effector → Sensory neuron → Spinal cord → Motor neuron → Receptor","Receptor → Sensory neuron → Spinal cord → Motor neuron → Effector","Receptor → Spinal cord → Sensory neuron → Effector → Motor neuron"],2,"The receptor detects the stimulus, the sensory neuron carries it to the spinal cord, the motor neuron carries the response to the effector."],
+["Maths","The LCM of 96 and 404 is:",["9696","38784","4848","19392"],0,"96 = 2⁵ × 3 and 404 = 2² × 101. HCF = 4, so LCM = (96 × 404)/4 = 9696."],
+["Maths","If α and β are the zeroes of x² − 5x + 6, then α² + β² =",["13","11","25","37"],0,"α + β = 5 and αβ = 6. α² + β² = 25 − 12 = 13."],
+["Maths","If the sum of the zeroes of kx² + 2x + 3k equals their product, then k =",["−2/3","2/3","−3/2","3/2"],0,"Sum = −2/k and product = 3. So −2/k = 3, which gives k = −2/3."],
+["Maths","The pair 3x + ky = 9 and 6x + 10y = 18 has infinitely many solutions when k =",["5","10","3","6"],0,"We need 3/6 = k/10 = 9/18 = 1/2, so k = 5."],
+["Maths","The sum of two numbers is 50 and their difference is 14. The larger number is:",["32","36","30","28"],0,"Adding x + y = 50 and x − y = 14 gives 2x = 64, so x = 32."],
+["Maths","If x = 3 is a root of x² − x + k = 0, then k =",["−6","6","−12","12"],0,"Put x = 3: 9 − 3 + k = 0, so k = −6."],
+["Maths","The quadratic 2x² + kx + 3 = 0 has equal roots when k =",["±2√6","±√6","±12","±24"],0,"Discriminant = k² − 4(2)(3) = k² − 24 = 0, so k = ±√24 = ±2√6."],
+["Maths","The sum of the first 20 terms of the AP 5, 9, 13, … is:",["860","820","880","800"],0,"S = (20/2)[2(5) + 19(4)] = 10 × 86 = 860."],
+["Maths","The 4th term of an AP is 11 and its 8th term is 23. Its 20th term is:",["59","56","62","65"],0,"a + 3d = 11 and a + 7d = 23 give d = 3 and a = 2. So T₂₀ = 2 + 19 × 3 = 59."],
+["Maths","In ΔABC, DE ∥ BC with D on AB and E on AC. If AD = 3 cm, DB = 5 cm and AC = 16 cm, then AE =",["6 cm","8 cm","10 cm","5 cm"],0,"By BPT, AD/AB = AE/AC, so 3/8 = AE/16 and AE = 6 cm."],
+["Maths","The areas of two similar triangles are 81 cm² and 49 cm². The ratio of their corresponding sides is:",["9 : 7","81 : 49","3 : 7","7 : 9"],0,"Areas are in the ratio of the squares of sides, so the sides are in the ratio √81 : √49 = 9 : 7."],
+["Maths","In ΔABC, ∠B = 90°, AB = 6 cm and BC = 8 cm. The length of the altitude from B to AC is:",["4.8 cm","5 cm","6 cm","4 cm"],0,"AC = 10 cm. Area = ½ × 6 × 8 = 24 = ½ × 10 × h, so h = 4.8 cm."],
+["Maths","The distance between the points (−3, 4) and (5, −2) is:",["10 units","8 units","12 units","14 units"],0,"√[(5 + 3)² + (−2 − 4)²] = √(64 + 36) = 10."],
+["Maths","The point that divides the line joining (1, 2) and (7, 8) internally in the ratio 1 : 2 is:",["(3, 4)","(4, 5)","(5, 6)","(2, 3)"],0,"Section formula: ((2·1 + 1·7)/3, (2·2 + 1·8)/3) = (3, 4)."],
+["Maths","The points (1, 1), (2, 3) and (k, 7) are collinear. Then k =",["4","5","3","6"],0,"Slope of the first two points = 2. Then (7 − 1)/(k − 1) = 2, so k − 1 = 3 and k = 4."],
+["Mental Ability","Find the next number: 2, 6, 12, 20, 30, ?",["42","40","44","36"],0,"Differences are 4, 6, 8, 10, so the next difference is 12 and the term is 42."],
+["Mental Ability","Complete the series: AZ, BY, CX, DW, ?",["EV","EU","FV","DV"],0,"The first letters move forward (A, B, C, D, E) and the second letters move backward (Z, Y, X, W, V)."],
+["Mental Ability","3 : 27 :: 4 : ?",["64","16","48","81"],0,"3³ = 27, so 4³ = 64."],
+["Mental Ability","Ravi walks 5 km North, turns right and walks 3 km, then turns right again and walks 5 km. How far and in which direction is he from the starting point?",["3 km East","3 km West","8 km East","13 km South"],0,"North 5, East 3, then South 5 cancels the northward movement. He is 3 km East of the start."],
+["Mental Ability","If BOOK is written as CPPL in a code, how is PEN written in that code?",["QFO","ODM","QEO","PFO"],0,"Each letter moves one step forward: P→Q, E→F, N→O, giving QFO."],
+["Mental Ability","Pointing to a man, Sita says, ‘His mother is the only daughter of my mother.’ How is the man related to Sita?",["Son","Brother","Nephew","Cousin"],0,"The only daughter of Sita’s mother is Sita herself, so the man’s mother is Sita and he is her son."],
+["Mental Ability","Which diagram best shows the relationship among Humans, Doctors and Dogs?",["A small circle (Doctors) inside a large circle (Humans), and a separate circle (Dogs) outside both","Three separate circles","Three circles inside each other","Doctors and Dogs overlapping, both inside Humans"],0,"All doctors are humans, so Doctors lie inside Humans. Dogs are not humans, so their circle is separate."],
+["Mental Ability","Statements: All pens are books. Some books are pencils.\nConclusions: I. Some pens are pencils. II. Some pencils are books.",["Only conclusion II follows","Only conclusion I follows","Both I and II follow","Neither I nor II follows"],0,"‘Some books are pencils’ means ‘Some pencils are books’, so II follows. Nothing links pens and pencils directly, so I does not."],
+["Mental Ability","If 5 March 2023 was a Sunday, what day of the week was 5 March 2024?",["Tuesday","Monday","Wednesday","Sunday"],0,"The gap includes 29 February 2024, so it is 366 days = 52 weeks + 2 days. Sunday + 2 = Tuesday."],
+["Mental Ability","What is the angle between the hands of a clock at 3:40?",["130°","120°","150°","140°"],0,"Hour hand: 3 × 30 + 40 × 0.5 = 110°. Minute hand: 40 × 6 = 240°. Difference = 130°."]
+];
+var SUBS=["Physics","Chemistry","Biology","Maths","Mental Ability"],L="ABCD",S,tmr,$=function(i){return document.getElementById(i)};
+function sh(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function fmt(s){s=Math.max(0,s);return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function fresh(){S={ord:Q.map(function(){return sh([0,1,2,3])}),ans:Q.map(function(){return -1}),mark:Q.map(function(){return 0}),cur:0,left:3600,scr:"start",cf:0}}
+function best(){try{return localStorage.getItem("nsat10:best")}catch(e){return null}}
+function start(){S.scr="test";clearInterval(tmr);tmr=setInterval(function(){S.left--;var e=$("tm");if(e){e.textContent=fmt(S.left);if(S.left<300)e.style.color="var(--bad)"}if(S.left<=0)finish()},1000);draw()}
+function finish(){clearInterval(tmr);S.scr="res";S.used=3600-Math.max(0,S.left);var sc=score().tot;try{if(sc>(+best()||0))localStorage.setItem("nsat10:best",sc)}catch(e){}draw();window.scrollTo(0,0)}
+function score(){var by={},tot=0;SUBS.forEach(function(s){by[s]={c:0,n:0}});Q.forEach(function(q,i){by[q[0]].n++;if(S.ans[i]===q[3]){by[q[0]].c++;tot+=4}});return{by:by,tot:tot}}
+function draw(){$("app").innerHTML=S.scr==="start"?startH():S.scr==="test"?testH():resH()}
+function startH(){var b=best();return '<h1 style="margin-top:10px">NSAT Class 10 – Mock Test</h1><p class="sub">Practice paper based on the PW NSAT Class 10 pattern. All questions are original and written for practice.</p>'+
+'<div class="card"><h2>Exam pattern</h2><p>• <b>40</b> single-choice questions, 4 options each<br>• <b>60 minutes</b>, English medium<br>• <b>4 marks</b> for each correct answer, <b>no negative marking</b> (maximum 160)<br>• Physics 5 · Chemistry 5 · Biology 5 · Maths 15 · Mental Ability 10</p></div>'+
+'<div class="card"><h2>Syllabus covered</h2><p class="sub"><b>Physics:</b> Light, Human Eye · <b>Chemistry:</b> Chemical Reactions, Acids Bases Salts · <b>Biology:</b> Life Processes, Control and Coordination · <b>Maths:</b> Real Numbers to Coordinate Geometry (7 chapters) · <b>Mental Ability:</b> series, analogy, direction, coding, blood relations, Venn, syllogism, calendar, clock</p></div>'+
+'<div class="card"><h2>Tips</h2><p class="sub">Sit somewhere quiet and do not pause the timer. Since there is no negative marking, answer every question. Skip a hard question and mark it for review. Options change order each attempt.</p>'+(b?'<p>Your best score so far: <b>'+b+' / 160</b></p>':'')+'<button class="pri" data-a="go">Start test</button></div>'}
+function testH(){var i=S.cur,q=Q[i],n=S.ans.filter(function(a){return a>=0}).length,sub=q[0];
+var h='<div class="bar2"><b>⏱ <span id="tm">'+fmt(S.left)+'</span></b><span class="sub">'+n+'/40 answered</span><button class="pri" data-a="sub">Submit</button></div>';
+if(S.cf)h+='<div class="card"><b>Submit the test?</b><p class="sub">You answered '+n+' of 40 questions'+(S.mark.some(function(m){return m})?' and marked some for review':'')+'. You can’t change answers after submitting.</p><div class="row" style="justify-content:flex-start"><button class="pri" data-a="yes">Yes, submit</button><button class="ghost" data-a="no">Keep going</button></div></div>';
+h+='<div class="chips">'+SUBS.map(function(s){return '<button class="'+(s===sub?'on':'')+'" data-a="sj" data-v="'+s+'">'+s+'</button>'}).join('')+'</div>';
+h+='<div class="card"><span class="tag">Question '+(i+1)+' of 40 · '+sub+'</span><p class="q">'+q[1].replace(/\n/g,'<br>')+'</p>'+S.ord[i].map(function(o,p){return '<button class="opt'+(S.ans[i]===o?' sel':'')+'" data-a="pick" data-v="'+o+'"><b>'+L[p]+'</b>'+q[2][o]+'</button>'}).join('')+
+'<div class="row"><button class="ghost" data-a="prev"'+(i?'':' disabled')+'>← Previous</button><button class="ghost" data-a="mk">'+(S.mark[i]?'★ Marked':'☆ Mark for review')+'</button><button class="ghost" data-a="clr">Clear</button><button class="pri" data-a="next"'+(i<39?'':' disabled')+'>Next →</button></div></div>';
+h+='<div class="card"><p class="sub" style="margin-top:0">Green = answered · Yellow = marked</p><div class="nav">'+Q.map(function(_,j){return '<button class="'+(S.ans[j]>=0?'a ':'')+(S.mark[j]?'m ':'')+(j===i?'c':'')+'" data-a="go2" data-v="'+j+'">'+(j+1)+'</button>'}).join('')+'</div></div>';return h}
+function resH(){var r=score(),c=0;Q.forEach(function(q,i){if(S.ans[i]===q[3])c++});var att=S.ans.filter(function(a){return a>=0}).length;
+var h='<h1 style="margin-top:10px">Your result</h1><div class="card"><span class="big">'+r.tot+'</span> <b>/ 160</b><p>'+c+' correct · '+(att-c)+' wrong · '+(40-att)+' skipped · time used '+fmt(S.used)+'</p></div><div class="card"><h2>Subject-wise</h2>';
+SUBS.forEach(function(s){var b=r.by[s],p=Math.round(b.c/b.n*100);h+='<p style="margin:10px 0 4px">'+s+' <b>'+b.c+'/'+b.n+'</b></p><div class="bar"><i style="width:'+p+'%"></i></div>'});
+var weak=SUBS.slice().sort(function(a,b){return r.by[a].c/r.by[a].n-r.by[b].c/r.by[b].n})[0];
+h+='<p class="sub">Focus next on: <b>'+weak+'</b>. Read the explanations below for every wrong or skipped question.</p></div><div class="card"><h2>Review</h2>';
+Q.forEach(function(q,i){var a=S.ans[i],ok=a===q[3];h+='<details><summary><b class="'+(ok?'ok':'no')+'">'+(ok?'✓':a<0?'–':'✗')+'</b> Q'+(i+1)+' · '+q[0]+'</summary><p class="q">'+q[1].replace(/\n/g,'<br>')+'</p><p>Your answer: '+(a<0?'<i>not attempted</i>':q[2][a])+'<br>Correct answer: <b class="ok">'+q[2][q[3]]+'</b></p><p class="sub">'+q[4]+'</p></details>'});
+return h+'</div><div class="row" style="justify-content:flex-start"><button class="pri" data-a="re">Try again</button><a class="ghost" style="text-decoration:none;color:inherit" href="./">Back to Board Ready</a></div>'}
+document.addEventListener("click",function(e){var t=e.target.closest("[data-a]");if(!t)return;var a=t.dataset.a,v=t.dataset.v,i=S.cur;
+if(a==="go"){start()}else if(a==="pick"){S.ans[i]=+v;draw()}else if(a==="clr"){S.ans[i]=-1;draw()}else if(a==="mk"){S.mark[i]^=1;draw()}
+else if(a==="next"){S.cur=Math.min(39,i+1);S.cf=0;draw();window.scrollTo(0,0)}else if(a==="prev"){S.cur=Math.max(0,i-1);S.cf=0;draw();window.scrollTo(0,0)}
+else if(a==="go2"){S.cur=+v;draw();window.scrollTo(0,0)}else if(a==="sj"){S.cur=Q.findIndex(function(q){return q[0]===v});draw()}
+else if(a==="sub"){S.cf=1;draw();window.scrollTo(0,0)}else if(a==="no"){S.cf=0;draw()}else if(a==="yes"){finish()}else if(a==="re"){fresh();draw();window.scrollTo(0,0)}});
+fresh();draw();
+</script></body></html>
