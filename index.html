@@ -50,6 +50,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  <div class="card"><div class="count"><div><span class="days" id="dl">–</span></div><div><b>days to your first exam</b><br><span class="sub">Exam start date: <input type="date" id="ed"></span></div></div>
  <p class="sub" style="margin-top:10px">Check the official date sheet on cbse.gov.in and set the date above.</p></div>
  <div class="card"><h2>Overall progress</h2><div class="bar"><i id="op"></i></div><p class="sub" id="ot"></p></div>
+ <div class="card" id="nsat"><h2>🎯 NSAT Class 10 mock test</h2><p class="sub">40 questions, 60 minutes, same pattern as PW NSAT. Get a score and subject-wise review.</p><a class="pri" href="nsat-test.html" style="display:inline-block;text-decoration:none">Take the test</a></div>
  <div class="card"><h2>Today’s plan</h2><p class="sub" id="pt"></p><div id="plan"></div><button class="ghost" id="unskip" style="margin-top:10px">Reset today’s plan</button></div>
  <div class="tip" id="quote"></div>
 </section>
@@ -115,7 +116,7 @@ function render(){
  var cand=all.filter(function(c){return st(c.id)<4&&((D.skip||{})[today()]||[]).indexOf(c.id)<0}).sort(function(a,b){return st(a.id)-st(b.id)||(D.star[b.id]?1:0)-(D.star[a.id]?1:0)}).slice(0,n);
  $("pt").textContent=cand.length?"To finish on time, move "+n+" chapter"+(n>1?"s":"")+" up a level today. Starred chapters come first.":"";
  $("plan").innerHTML=cand.length?cand.map(function(c){return rowHtml(c).replace(/<\/div>$/,'<button class="ghost" data-skip="'+esc(c.id)+'">Skip</button></div>')}).join(""):"<p>🎉 Every chapter is marked confident. Keep revising with mock papers.</p>";
- $("quote").textContent=QUO[new Date().getDate()%QUO.length];
+ $("quote").textContent=QUO[new Date().getDate()%QUO.length];$("nsat").style.display=cls==="10"?"":"none";
  // syllabus
  var h="";for(var sub in SYL[cls]){var cs=all.filter(function(c){return c.sub===sub}),sp=Math.round(cs.reduce(function(a,c){return a+st(c.id)},0)/(cs.length*4)*100);
   h+='<div class="card"><h2>'+esc(sub)+' <span class="tag">'+sp+'%</span></h2><div class="bar" style="margin-bottom:6px"><i style="width:'+sp+'%"></i></div>'+(sub==='English'?dictHtml():'')+cs.map(rowHtml).join("")+
